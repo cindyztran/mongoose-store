@@ -31,7 +31,8 @@ mongoose.connect(MONGODB_URI,
     { 
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        useCreateIndex: true,
 
 });
 
@@ -55,6 +56,15 @@ app.use(methodOverride('_method')); //allow POST, PUT and DELETE from a form
 
 //Routes/Controller code 
 //localhost:3000
+
+//Seed - run create on each item
+const plantSeed = require('./models/plantSeed.js');
+app.get('/plants/seed', (req, res) => {
+    Plant.deleteMany({}, (error, allPlants) => {});
+    Plant.create(plantSeed, (error, data) => {
+        res.redirect('/plants');
+    });
+});
 
 //Index
 app.get('/plants', (req, res) => { 

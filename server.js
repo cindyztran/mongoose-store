@@ -89,6 +89,14 @@ app.post('/plants', (req, res) => {
 });
 
 //Edit
+app.get('/plants/:id/edit', (req, res) => {
+    Plant.findById(req.params.id, (err, foundPlant) => {
+        res.render('edit.ejs', {
+            plant: foundPlant,
+            index: req.params.id
+        });
+    });
+});
 
 //Show 
 app.get('/plants/:id', (req, res) => {

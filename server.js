@@ -5,8 +5,6 @@ const mongoose = require('mongoose');
 
 const methodOverride = require('method-override');
 
-//require model
-const Plant = require('./models/plants');
 
 //Initialize the Express App
 const app = express();
@@ -56,73 +54,8 @@ app.use(methodOverride('_method')); //allow POST, PUT and DELETE from a form
 //Routes/Controller code 
 //localhost:3000
 
-//Seed - run create on each item
-const plantSeed = require('./models/plantSeed.js');
-app.get('/plants/seed', (req, res) => {
-    Plant.deleteMany({}, (error, allPlants) => {});
-    Plant.create(plantSeed, (error, data) => {
-        res.redirect('/plants');
-    });
-});
-
-//Index
-app.get('/plants', (req, res) => { 
-    Plant.find({}, (error, allPlants) => {
-        res.render('index.ejs', {
-            plants: allPlants,
-        });
-    });
-});
-
-//New
-app.get('/plants/new', (req, res) => {
-    res.render('new.ejs');
-});
-
-//Delete
-app.delete('/plants/:id', (req, res)=> {
-    Plant.findByIdAndRemove(req.params.id, (error, deletedPlant) => {
-        res.redirect('/plants');
-    });
-});
-
-
-//Update
-app.put('/plants/:id', (req, res) => {
-    Plant.findByIdAndUpdate(req.params.id, req.body, {
-        new: true
-    }, (error, updatedPlant) => {
-        res.redirect(`/plants/${req.params.id}`);
-
-    });
-});
-
-
-//Create
-app.post('/plants', (req, res) => {
-    Plant.create(req.body, (error, createdPlant) => {
-        res.redirect('/plants');
-    });
-});
-
-//Edit
-app.get('/plants/:id/edit', (req, res) => {
-    Plant.findById(req.params.id, (err, foundPlant) => {
-        res.render('edit.ejs', {
-            plant: foundPlant
-        });
-    });
-});
-
-//Show 
-app.get('/plants/:id', (req, res) => {
-    Plant.findById(req.params.id, (err, foundPlant) => {
-        res.render('show.ejs', {
-        plant: foundPlant,
-
-        });
-    });
-});
+const plantsController = require('./controllers/plants.js');
+app.use('/plants', plantsController);
 
 
 

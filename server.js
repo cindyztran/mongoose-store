@@ -88,17 +88,18 @@ app.delete('/plants/:id', (req, res)=> {
 
 
 //Update
+app.put('/plants/:id', (req, res) => {
+    Plant.findByIdAndUpdate(req.params.id, req.body, {
+        new: true
+    }, (error, updatedPlant) => {
+        res.redirect(`/plants/${req.params.id}`);
+
+    });
+});
 
 
 //Create
 app.post('/plants', (req, res) => {
-    if (req.body.completed === 'on') {
-        //if checked, req.body.completed is set to 'on'
-        req.body.completed = true;
-    } else {
-        //if not checked, req.body.completed is undefined
-        req.body.completed = false;
-    }
     Plant.create(req.body, (error, createdPlant) => {
         res.redirect('/plants');
     });
@@ -108,8 +109,7 @@ app.post('/plants', (req, res) => {
 app.get('/plants/:id/edit', (req, res) => {
     Plant.findById(req.params.id, (err, foundPlant) => {
         res.render('edit.ejs', {
-            plant: foundPlant,
-            index: req.params.id
+            plant: foundPlant
         });
     });
 });

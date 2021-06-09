@@ -80,6 +80,11 @@ app.get('/plants/new', (req, res) => {
 });
 
 //Delete
+app.delete('/plants/:id', (req, res)=> {
+    Plant.findByIdAndRemove(req.params.id, (error, deletedPlant) => {
+        res.redirect('/plants');
+    });
+});
 
 
 //Update

@@ -12,7 +12,11 @@
         <% plants.forEach(plant => { %>
             <li>
                 <%=plant.name%>
-                <a href="/plants/<%=plant.id;%>"><img src="<%= plant.img; %>"></a></li>
+                <a href="/plants/<%=plant._id;%>"><img src="<%= plant.img; %>"></a>
+                
+        
+            
+            </li>
         <% }) %>
 
 

@@ -7,6 +7,21 @@
     <title>Document</title>
 </head>
 <body>
+    <nav>
+        <a href="/plants">Back to products</a>
+
+    </nav>
+    <h1><%= plant.name %></h1><br/>
+    <img src="<%= plant.img %>"><br/>
+    <%= plant.description %><br/>
+    Price: $<%= plant.price %><br />
+    <%= plant.qty %> remaining<br />
+    <a href=""><button class="button">BUY</button></a><br />
+    <a href="/plants/:id/edit">Edit product</a><br />
+
+    <a href=""><button class="button" id="decrement">DELETE</button></a><br />
+
+
     
 </body>
 </html>

@@ -66,6 +66,9 @@ app.get('/plants', (req, res) => {
 });
 
 //New
+app.get('/plants/new', (req, res) => {
+    res.render('new.ejs');
+});
 
 //Delete
 
@@ -88,8 +91,16 @@ app.post('/plants', (req, res) => {
 //Edit
 
 //Show 
+app.get('/plants/:id', (req, res) => {
+    Plant.findById(req.params.id, (err, foundPlant) => {
+        res.render('show.ejs', {
+        plant: foundPlant,
+
+        });
+    });
+});
+
 
 
 //Listener 
 app.listen(PORT, () => console.log('express is listening on:', PORT));
-

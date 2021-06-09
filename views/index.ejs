@@ -7,14 +7,19 @@
     <title>Plants Nursery App</title>
 </head>
 <body>
-    <h1>Plants Nursery Index Page</h1>
+    <h1>Plants Nursery Shop</h1>
     <ul>
         <% plants.forEach(plant => { %>
-            <li><a href="/plants/<%=plant.id;%>"><%= plant.name; %></a></li>
+            <li>
+                <%=plant.name%>
+                <a href="/plants/<%=plant.id;%>"><img src="<%= plant.img; %>"></a></li>
         <% }) %>
 
 
     </ul>
+    <nav>
+        <a href="/plants/new">Create new product</a>
+    </nav>
     
 </body>
 </html>

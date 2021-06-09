@@ -8,7 +8,6 @@ const methodOverride = require('method-override');
 //require model
 const Plant = require('./models/plants');
 
-
 //Initialize the Express App
 const app = express();
 
@@ -82,7 +81,9 @@ app.get('/plants/new', (req, res) => {
 
 //Delete
 
+
 //Update
+
 
 //Create
 app.post('/plants', (req, res) => {

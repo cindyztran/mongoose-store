@@ -44,6 +44,7 @@ plantRouter.delete('/:id', (req, res)=> {
 //Update
 plantRouter.put('/:id', (req, res) => {
     //find product in mongodb and update with req.body
+    
     Plant.findByIdAndUpdate(req.params.id, req.body, {
         new: true
     }, (error, updatedPlant) => {
@@ -51,6 +52,33 @@ plantRouter.put('/:id', (req, res) => {
         res.redirect(`/plants/${req.params.id}`);
 
     });
+});
+
+////Buy
+//Buy Button solution credit to Josh Zalcman
+plantRouter.put('/:id/buy', (req, res, next) => {
+    //find product and create a req.body from returned object
+    Plant.findById(req.params.id, (error, foundPlant) => {
+        req.body = {
+            _id: foundPlant.id, name: foundPlant.name,
+            description: foundPlant.description,
+            img: foundPlant.img,
+            price: foundPlant.findByIdAndRemove,
+            //decrement qty value
+            qty: foundPlant.qty -1,
+        };
+
+        //find product and update
+        Plant.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {new: true},
+            (error, updatedPlant) => {
+            res.redirect(`/plants/${req.params.id}`);
+            });
+        
+    });
+
 });
 
 

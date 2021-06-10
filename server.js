@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 const methodOverride = require('method-override');
 
-
 //Initialize the Express App
 const app = express();
 

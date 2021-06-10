@@ -5,8 +5,13 @@ const mongoose = require('mongoose');
 
 const methodOverride = require('method-override');
 
+
 //Initialize the Express App
 const app = express();
+
+//static 
+let path = require('path');
+app.use(express.static(path.join(__dirname + `/public`)));
 
 // connection variable. object that represents our connection instance
 // use this to get info about our mongodb connection
@@ -49,6 +54,7 @@ app.use(express.json()); //returns middleware that only parses JSON - may or may
 
 //use method override 
 app.use(methodOverride('_method')); //allow POST, PUT and DELETE from a form
+
 
 //Routes/Controller code 
 //localhost:3000

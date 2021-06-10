@@ -4,23 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plants Nursery App</title>
+    <link rel="stylesheet" type='text/css' href="/css/style.css">
+    <title>Plant Nursery Shop</title>
 </head>
 <body>
-    <h1>Plants Nursery Shop</h1>
-    <ul>
-        <% plants.forEach(plant => { %>
-            <li>
-                <%=plant.name%><br />
-                <a href="/plants/<%=plant._id;%>"><img src="<%= plant.img; %>"></a><br />
-                
-        
+    <h1>Plant Nursery Shop</h1>
+    <div class="index-container">
+        <ul> 
+            <% plants.forEach(plant => { %>
+                <li>
+                    <p class="index-plant-name">
+                        <%=plant.name%>
+                    </p>
+                    
+                    <a href="/plants/<%=plant._id;%>"><img src="<%= plant.img; %>"></a><br />
+                    
             
-            </li>
-        <% }) %>
-
-
-    </ul>
+                
+                </li>
+            <% }) %>
+    
+    
+        </ul>
+    </div>
     <nav>
         <a href="/plants/new">Create new product</a>
     </nav>
